@@ -2,15 +2,15 @@
 # vim: set ft=ruby :
 
 MACHINES = {
-  :otuslinux => {
+  :VM => {
         :box_name => "centos/7",
         :ip_addr => '192.168.10.30',
     :disks => {
-	:sata1 => { :dfile => '~/VirtualBox VMs/sata1.vdi', :size => 1024, :port => 1},
-	:sata2 => { :dfile => '~/VirtualBox VMs/sata2.vdi', :size => 1024, :port => 2},
+	:sata1 => { :dfile => '~/VirtualBox VMs/sata1.vdi', :size => 10240, :port => 1},
+	:sata2 => { :dfile => '~/VirtualBox VMs/sata2.vdi', :size => 2048, :port => 2},
         :sata3 => { :dfile => '~/VirtualBox VMs/sata3.vdi', :size => 1024, :port => 3},
         :sata4 => { :dfile => '~/VirtualBox VMs/sata4.vdi', :size => 1024, :port => 4},
-        :sata5 => { :dfile => '~/VirtualBox VMs/sata5.vdi', :size => 1024, :port => 5}
+        :sata5 => { :dfile => '~/VirtualBox VMs/sata5.vdi', :size => 3074, :port => 5}
     }
   },
 }
@@ -48,7 +48,7 @@ Vagrant.configure("2") do |config|
       box.vm.provision "shell", inline: <<-SHELL
           mkdir -p ~root/.ssh
           cp ~vagrant/.ssh/auth* ~root/.ssh
-          yum install -y mdadm gdisk
+          yum install -y mdadm gdisk lvm2 mc
       SHELL
 
       end
